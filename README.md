@@ -10,7 +10,8 @@ Setup
         c. run the project flutter run, flutter run -d android or flutter run -d edge or debug.
 
 
-![Model](https://github.com/Phant0m-a/Sandbox/blob/main/assets/habittracker.PNG)
+![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/habittracker.PNG)
+
 
 ## Getting Started
 
