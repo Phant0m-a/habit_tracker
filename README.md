@@ -1,6 +1,16 @@
 # habit_tracker
 
-A new Flutter project.
+An App that tracks your habits with offline database, Just like github!
+
+Setup
+        a. clone repo git clone <repo-name>.
+
+        b. get all dependencies flutter pub get.
+
+        c. run the project flutter run, flutter run -d android or flutter run -d edge or debug.
+
+
+![Model](https://github.com/Phant0m-a/Sandbox/blob/main/assets/habittracker.PNG)
 
 ## Getting Started
 
