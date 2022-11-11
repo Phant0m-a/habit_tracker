@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
       home: HomePage(),
       theme: ThemeData(
           primarySwatch: Colors.grey,
+          
           floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Colors.orange[300],
               splashColor: Colors.orange,

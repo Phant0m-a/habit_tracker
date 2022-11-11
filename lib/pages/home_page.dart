@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/pages/widgets/enter_new_habit_box.dart';
+import 'package:habit_tracker/pages/widgets/my_alert_box.dart';
 import 'package:habit_tracker/pages/widgets/habit_tile.dart';
 import 'package:habit_tracker/pages/widgets/my_fob.dart';
 
@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: ((context) {
-          return EnterNewHabitBox(
+          return MyAlertBox(
             onSave: saveNewHabit,
-            onCancel: cancelNewHabit,
+            onCancel: cancelDialog,
             controller: _newHabitController,
           );
         }));
@@ -51,17 +51,47 @@ class _HomePageState extends State<HomePage> {
   //save new habit
   void saveNewHabit() {
     setState(() {
-      //save to list
-      Habits.add([_newHabitController.text, false]);
+      if (_newHabitController.text.isNotEmpty) {
+        //save to list
+        Habits.add([_newHabitController.text, false]);
+      }
     });
     _newHabitController.clear();
     Navigator.of(context).pop();
   }
 
   //save new habit
-  void cancelNewHabit() {
+  void cancelDialog() {
     _newHabitController.clear();
     Navigator.of(context).pop();
+  }
+
+// open habit settings to edit
+  void openHabitSettings(int index) {
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return MyAlertBox(
+            onSave: () => saveExistingHabit(index),
+            onCancel: cancelDialog,
+            controller: _newHabitController,
+          );
+        }));
+  }
+
+  // sve existing habit
+  void saveExistingHabit(int index) {
+    setState(() {
+      Habits[index][0] = _newHabitController.text;
+    });
+    _newHabitController.clear();
+    Navigator.of(context).pop();
+  }
+
+  deleteHabit(int index) {
+    setState(() {
+      Habits.removeAt(index);
+    });
   }
 
   @override
@@ -74,6 +104,8 @@ class _HomePageState extends State<HomePage> {
           itemCount: Habits.length,
           itemBuilder: (context, index) {
             return HabitTile(
+              settingsTapped: (context) => openHabitSettings(index),
+              deleteTapped: (context) => deleteHabit(index),
               habitName: Habits[index][0],
               isCompleted: Habits[index][1],
               onChanged: (value) => checkboxTapped(value, index),
