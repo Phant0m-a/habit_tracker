@@ -53,25 +53,38 @@ class HabitTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //checkbox
-                  Checkbox(value: isCompleted, onChanged: onChanged),
-                  // habit naem
-                  Text(
-                    habitName,
-                    style: TextStyle(
-                      color: isCompleted == true ? Colors.white : Colors.black,
+              Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //checkbox
+                    Checkbox(value: isCompleted, onChanged: onChanged),
+                    // habit name
+
+                    Container(
+                      width: 200,
+                      child: Text(
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        habitName,
+                        style: TextStyle(
+                          color:
+                              isCompleted == true ? Colors.white : Colors.black,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 
               //icon right
-              Icon(
-                Icons.arrow_back,
-                color: isCompleted == true ? Colors.white : Colors.grey[400],
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: isCompleted == true ? Colors.white : Colors.grey[400],
+                ),
               ),
             ],
           ),

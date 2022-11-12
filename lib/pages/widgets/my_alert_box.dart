@@ -6,12 +6,14 @@ class MyAlertBox extends StatelessWidget {
   final controller;
   final VoidCallback onSave;
   final VoidCallback onCancel;
+  final String hint;
 
   const MyAlertBox(
       {super.key,
       this.controller,
       required this.onSave,
-      required this.onCancel});
+      required this.onCancel,
+      required this.hint});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class MyAlertBox extends StatelessWidget {
         // cursorColor: Colors.orange,
         cursorColor: Colors.green,
         decoration: InputDecoration(
-          hintText: 'Enter new habit',
+          hintText: hint,
           hintStyle: TextStyle(color: Colors.green[300]),
           enabledBorder: OutlineInputBorder(
             // borderSide: BorderSide(color: Colors.orange),
