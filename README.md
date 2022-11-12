@@ -10,12 +10,19 @@ Setup
         c. run the project flutter run, flutter run -d android or flutter run -d edge or debug.
 
 
-<<<<<<< HEAD
-![Model](https://github.com/Phant0m-a/Sandbox/blob/master/assets/habittracker.PNG)
-=======
+
 ![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/habittracker.PNG)
 
->>>>>>> 990518bce02c89f96ff667b8d96d6f01e04ac12a
+iphone varient
+
+![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/2.PNG)
+
+
+# web version
+
+![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/3.PNG)
+
+
 
 ## Getting Started
 

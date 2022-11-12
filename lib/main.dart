@@ -24,14 +24,16 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
+      
       home: HomePage(),
       theme: ThemeData(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.green,
           floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.orange[300],
-              splashColor: Colors.orange,
-              foregroundColor: Colors.orange[900])),
+              backgroundColor: Colors.green[500],
+              splashColor: Colors.green,
+              foregroundColor: Colors.green[900])),
     );
   }
 }

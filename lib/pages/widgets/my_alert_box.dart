@@ -18,16 +18,21 @@ class MyAlertBox extends StatelessWidget {
     return AlertDialog(
       content: TextField(
         controller: controller,
+        // style: TextStyle(color: Colors.grey[700]),
         style: TextStyle(color: Colors.grey[700]),
         textAlign: TextAlign.center,
-        cursorColor: Colors.orange,
+        // cursorColor: Colors.orange,
+        cursorColor: Colors.green,
         decoration: InputDecoration(
           hintText: 'Enter new habit',
+          hintStyle: TextStyle(color: Colors.green[300]),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange),
+            // borderSide: BorderSide(color: Colors.orange),
+            borderSide: BorderSide(color: Colors.green),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange),
+            // borderSide: BorderSide(color: Colors.orange),
+            borderSide: BorderSide(color: Colors.green),
           ),
         ),
       ),
@@ -46,7 +51,8 @@ class MyAlertBox extends StatelessWidget {
         //save
         MaterialButton(
           // color: Colors.grey[900],
-          color: Colors.orange[300],
+          // color: Colors.orange[300],
+          color: Colors.green[300],
           onPressed: onSave,
           child: Text(
             'Save',

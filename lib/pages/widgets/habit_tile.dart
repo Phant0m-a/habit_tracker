@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habit_tracker/main.dart';
 
 class HabitTile extends StatelessWidget {
   final String habitName;
@@ -46,14 +47,32 @@ class HabitTile extends StatelessWidget {
           padding: EdgeInsets.all(24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.grey[100],
+            // color: Colors.grey[100],
+            color: isCompleted == true ? Colors.green[400] : Colors.grey[100],
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //checkbox
-              Checkbox(value: isCompleted, onChanged: onChanged),
-              // habit naem
-              Text(habitName),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  //checkbox
+                  Checkbox(value: isCompleted, onChanged: onChanged),
+                  // habit naem
+                  Text(
+                    habitName,
+                    style: TextStyle(
+                      color: isCompleted == true ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+
+              //icon right
+              Icon(
+                Icons.arrow_back,
+                color: isCompleted == true ? Colors.white : Colors.grey[400],
+              ),
             ],
           ),
         ),
