@@ -2,8 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/pages/home_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  //initalize hive
+  await Hive.initFlutter();
+  //open a box
+  await Hive.openBox('Habit_Tracker_Database');
+
   runApp(const MyApp());
 }
 
@@ -22,7 +28,6 @@ class _MyAppState extends State<MyApp> {
       home: HomePage(),
       theme: ThemeData(
           primarySwatch: Colors.grey,
-          
           floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Colors.orange[300],
               splashColor: Colors.orange,

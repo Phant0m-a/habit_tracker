@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/data/habit_database.dart';
 import 'package:habit_tracker/pages/widgets/my_alert_box.dart';
 import 'package:habit_tracker/pages/widgets/habit_tile.dart';
 import 'package:habit_tracker/pages/widgets/my_fob.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,12 +16,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 // list of habits
-  List Habits = [
-    // [ habits, habitcompleted]
-    ["Flutter Practice", false],
-    ["Stroll 1 mile", false],
-    ["Do Widget of the Day", false]
-  ];
+  // List Habits = [
+  //   // [ habits, habitcompleted]
+  //   ["Flutter Practice", false],
+  //   ["Stroll 1 mile", false],
+  //   ["Do Widget of the Day", false]
+  // ];
+
+  //instance of habits
+  HabitDatabase db = HabitDatabase();
+  final _mybox = Hive.box('Habit_Tracker_Database');
+
+  @override
+  void initState() {
+    // if first time opening the app the create the defualt list,
+    if (_mybox.get('CURRENT_HABIT_LIST') == null) {
+      db.createDefaultData();
+    }
+
+    //else load up the data of the user
+    else {
+      db.loadData();
+    }
+
+    //update our db
+    db.updateDatabase();
+
+    super.initState();
+  }
 
 //bool to control if habit was completed
   // bool habitCompleted = false;
@@ -27,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 // checkbox was tapped
   void checkboxTapped(bool? value, int index) {
     setState(() {
-      Habits[index][1] = value!;
+      db.Habits[index][1] = value!;
     });
   }
 
@@ -53,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       if (_newHabitController.text.isNotEmpty) {
         //save to list
-        Habits.add([_newHabitController.text, false]);
+        db.Habits.add([_newHabitController.text, false]);
       }
     });
     _newHabitController.clear();
@@ -72,6 +96,10 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: ((context) {
           return MyAlertBox(
+<<<<<<< Updated upstream
+=======
+            hintText: db.Habits[index][0].toString(),
+>>>>>>> Stashed changes
             onSave: () => saveExistingHabit(index),
             onCancel: cancelDialog,
             controller: _newHabitController,
@@ -82,7 +110,7 @@ class _HomePageState extends State<HomePage> {
   // sve existing habit
   void saveExistingHabit(int index) {
     setState(() {
-      Habits[index][0] = _newHabitController.text;
+      db.Habits[index][0] = _newHabitController.text;
     });
     _newHabitController.clear();
     Navigator.of(context).pop();
@@ -90,7 +118,7 @@ class _HomePageState extends State<HomePage> {
 
   deleteHabit(int index) {
     setState(() {
-      Habits.removeAt(index);
+      db.Habits.removeAt(index);
     });
   }
 
@@ -101,13 +129,13 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: MyFob(onPressed: createNewHabit),
 
       body: ListView.builder(
-          itemCount: Habits.length,
+          itemCount: db.Habits.length,
           itemBuilder: (context, index) {
             return HabitTile(
               settingsTapped: (context) => openHabitSettings(index),
               deleteTapped: (context) => deleteHabit(index),
-              habitName: Habits[index][0],
-              isCompleted: Habits[index][1],
+              habitName: db.Habits[index][0],
+              isCompleted: db.Habits[index][1],
               onChanged: (value) => checkboxTapped(value, index),
             );
           }),
