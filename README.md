@@ -15,7 +15,7 @@ Setup
 
 iphone varient
 
-![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/2.PNG)
+![Model](https://github.com/Phant0m-a/habit_tracker/blob/master/assets/2.jpg)
 
 
 # web version
