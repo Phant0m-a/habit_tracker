@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> {
         }));
   }
 
+
   //save new habit
   void saveNewHabit() {
     setState(() {
@@ -104,18 +105,19 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: ((context) {
           return MyAlertBox(
-            onSave: () => saveExistingHabit(index),
-            onCancel: cancelDialog,
-            controller: _newHabitController,
-            hint: db.Habits[index][0]
-          );
+              onSave: () => saveExistingHabit(index),
+              onCancel: cancelDialog,
+              controller: _newHabitController,
+              hint: db.Habits[index][0]);
         }));
   }
 
   // sve existing habit
   void saveExistingHabit(int index) {
     setState(() {
-      db.Habits[index][0] = _newHabitController.text;
+      if (_newHabitController.text.isNotEmpty) {
+        db.Habits[index][0] = _newHabitController.text;
+      }
     });
     _newHabitController.clear();
     Navigator.of(context).pop();
